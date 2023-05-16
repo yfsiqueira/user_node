@@ -1,3 +1,7 @@
+import { Request, Response } from "express";
+
 export class CreateUserController{
-    handle(): any{}
+    handle(request: Request, response: Response): any{
+        
+    }
 }
