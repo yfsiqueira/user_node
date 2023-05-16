@@ -1,13 +1,22 @@
 import { Request, Response } from "express";
 import { CreateUserUserCase } from "./create-user.usecase";
+import { IUserRepository } from "./repositories/user.repository.interface";
+import { ICepAbstraction } from "../../../../providers/cep/cep.abstraction";
 
 export class CreateUserController {
-    handle(request: Request, response: Response): any {
+
+    constructor(private userRepository: IUserRepository, private cepProvider: ICepAbstraction) { }
+
+    async handle(request: Request, response: Response): Promise<void> {
         try {
-            const useCase = new CreateUserUserCase();
-            const user = useCase.execute(request.body);
+            const useCase = new CreateUserUserCase(
+                this.userRepository,
+                this.cepProvider
+            );
+            const user = await useCase.execute(request.body);
+            response.status(201).json(user);
         } catch (error: any) {
-            response.json(error.statusCode).end({
+            response.status(error.statusCode).json({
                 'error': error.message
             })
         }

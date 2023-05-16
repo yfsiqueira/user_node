@@ -5,7 +5,6 @@ type IUser = {
     name: string
     surname: string
     phone: string
-    address: string
     cep: string
 }
 
@@ -17,14 +16,16 @@ export class UserEntity {
     phone: string;
     address: string;
     cep: string;
+    origin: string;
 
     private constructor(properties: IUser) {
         this.id = randomUUID();
         this.name = properties.name;
         this.surname = properties.surname;
         this.phone = properties.phone;
-        this.address = properties.address;
+        this.address = '';
         this.cep = properties.cep;
+        this.origin = 'user_node';
     }
 
     static create(properties: IUser) {
@@ -33,6 +34,14 @@ export class UserEntity {
         }
         if (!properties.surname) {
             throw new CustomError("Property 'surname' is required", 422, 'REQUIRED_PARAMS')
+        }
+
+        if (!properties.cep) {
+            throw new CustomError("Property 'cep' is required", 422, 'REQUIRED_PARAMS')
+        }
+
+        if (properties.cep.length < 8) {
+            throw new CustomError("Property 'cep' is invalid", 422, 'REQUIRED_PARAMS')
         }
         const user = new UserEntity(properties);
         return user;

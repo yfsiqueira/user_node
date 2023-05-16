@@ -1,3 +1,5 @@
+import { getCepDto } from "./dto/get-cep.dto";
+
 export interface ICepAbstraction {
-    get(cep : string): any
+    get(cep: string): Promise<getCepDto | undefined>
 }

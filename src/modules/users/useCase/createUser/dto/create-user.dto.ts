@@ -1,4 +1,4 @@
-export type createUserUseCaseDto = {
+export type CreateUserUseCaseDto = {
     name: string
     surname: string
     phone: string
