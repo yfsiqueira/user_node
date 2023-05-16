@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CreateUserUserCase } from "./create-user.usecase";
+import { CreateUserUseCase } from "./create-user.usecase";
 import { IUserRepository } from "./repositories/user.repository.interface";
 import { ICepAbstraction } from "../../../../providers/cep/cep.abstraction";
 
@@ -9,7 +9,7 @@ export class CreateUserController {
 
     async handle(request: Request, response: Response): Promise<void> {
         try {
-            const useCase = new CreateUserUserCase(
+            const useCase = new CreateUserUseCase(
                 this.userRepository,
                 this.cepProvider
             );

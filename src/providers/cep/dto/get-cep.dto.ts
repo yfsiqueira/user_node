@@ -10,3 +10,7 @@ export type getCepDto = {
     ddd: string
     siafi: string
 }
+
+export type getCepErrorDto = {
+    erro: boolean
+}

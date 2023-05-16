@@ -40,8 +40,8 @@ export class UserEntity {
             throw new CustomError("Property 'cep' is required", 422, 'REQUIRED_PARAMS')
         }
 
-        if (properties.cep.length < 8) {
-            throw new CustomError("Property 'cep' is invalid", 422, 'REQUIRED_PARAMS')
+        if (!properties.cep.match(/^\d{5}[-]\d{3}$/)) {
+            throw new CustomError("Property 'cep' in invalid format", 422, 'REQUIRED_PARAMS')
         }
         const user = new UserEntity(properties);
         return user;

@@ -5,19 +5,20 @@ import { CreateUserUseCaseDto } from "./dto/create-user.dto";
 import { UserPrismaRepository } from "./repositories/implementation/user.prisma.repository";
 import { IUserRepository } from "./repositories/user.repository.interface";
 
-export class CreateUserUserCase {
+export class CreateUserUseCase {
     constructor(private userRepository: IUserRepository, private cepProvider: ICepAbstraction) { }
 
     async execute(payload: CreateUserUseCaseDto): Promise<UserEntity> {
         const user = UserEntity.create(payload);
 
         const infoAddress = await this.cepProvider.get(payload.cep);
+
         if (!infoAddress) {
-            throw new CustomError('CEP is invalid');
+            throw new CustomError("CEP is invalid", 422, 'REQUIRED_PARAMS')
         }
 
         user.address = infoAddress.logradouro;
-        await this.userRepository.save(user);
-        return user;
+        const userSaved = await this.userRepository.save(user);
+        return userSaved;
     }
 }
