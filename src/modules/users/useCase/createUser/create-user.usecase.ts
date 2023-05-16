@@ -1,3 +1,7 @@
+import { createUserUseCaseDto } from "./dto/create-user.dto";
+
 export class CreateUserUserCase {
-    execute(): any {}
+    execute(payload: createUserUseCaseDto): any {
+        
+    }
 }
