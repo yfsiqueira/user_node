@@ -1,4 +1,5 @@
 import { randomUUID } from "crypto";
+import { CustomError } from "../../../errors/custom.error";
 
 type IUser = {
     name: string
@@ -28,10 +29,10 @@ export class UserEntity {
 
     static create(properties: IUser) {
         if (!properties.name) {
-
+            throw new CustomError("Property 'name' is required", 422, 'REQUIRED_PARAMS')
         }
         if (!properties.surname) {
-
+            throw new CustomError("Property 'surname' is required", 422, 'REQUIRED_PARAMS')
         }
         const user = new UserEntity(properties);
         return user;
