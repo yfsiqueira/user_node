@@ -30,18 +30,18 @@ export class UserEntity {
 
     static create(properties: IUser) {
         if (!properties.name) {
-            throw new CustomError("Property 'name' is required", 422, 'REQUIRED_PARAMS')
+            throw new CustomError("Property 'name' is required", 422)
         }
         if (!properties.surname) {
-            throw new CustomError("Property 'surname' is required", 422, 'REQUIRED_PARAMS')
+            throw new CustomError("Property 'surname' is required", 422)
         }
 
         if (!properties.cep) {
-            throw new CustomError("Property 'cep' is required", 422, 'REQUIRED_PARAMS')
+            throw new CustomError("Property 'cep' is required", 422)
         }
 
         if (!properties.cep.match(/^\d{5}[-]\d{3}$/)) {
-            throw new CustomError("Property 'cep' in invalid format", 422, 'REQUIRED_PARAMS')
+            throw new CustomError("Property 'cep' in invalid format", 422)
         }
         const user = new UserEntity(properties);
         return user;

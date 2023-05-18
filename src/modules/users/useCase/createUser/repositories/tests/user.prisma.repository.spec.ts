@@ -1,8 +1,10 @@
 import { prismaClient } from "../../../../../../infra/db/prisma.config";
 import { UserPrismaRepository } from "../implementation/user.prisma.repository";
+import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended'
 import { randomUUID } from "crypto";
 
 describe('User Prisma Repository Tests', () => {
+    
     test('Should be create a user', async () => {
 
         const userId = randomUUID();

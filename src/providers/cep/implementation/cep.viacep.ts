@@ -11,9 +11,11 @@ export class CepViaCep implements ICepAbstraction {
             if (data.erro) {
                 return null;
             }
+            console.log(data);
             return data;
         } catch (error: any) {
-            throw new CustomError("Invalid CEP passed to provider", 503, 'CEP_SERVICE_ERROR');
+            console.log(error);
+            throw new CustomError("Invalid CEP passed to provider", 400);
         }
     }
 }

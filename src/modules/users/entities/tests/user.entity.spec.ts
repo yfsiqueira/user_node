@@ -1,4 +1,3 @@
-import { CustomError } from "../../../../errors/custom.error";
 import { UserEntity } from "../user.entity";
 
 describe('Entity User Tests', () => {

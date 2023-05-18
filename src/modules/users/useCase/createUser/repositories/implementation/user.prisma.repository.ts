@@ -12,6 +12,7 @@ export class UserPrismaRepository implements IUserRepository {
                     name, surname, phone, cep, address, origin
                 }
             });
+
             return user;
         } catch (error: any) {
             throw new CustomError('Database Service is Unavailable', 503);

@@ -2,7 +2,6 @@ import { CustomError } from "../../../../errors/custom.error";
 import { ICepAbstraction } from "../../../../providers/cep/cep.abstraction";
 import { UserEntity } from "../../entities/user.entity";
 import { CreateUserUseCaseDto } from "./dto/create-user.dto";
-import { UserPrismaRepository } from "./repositories/implementation/user.prisma.repository";
 import { IUserRepository } from "./repositories/user.repository.interface";
 
 export class CreateUserUseCase {
@@ -14,7 +13,7 @@ export class CreateUserUseCase {
         const infoAddress = await this.cepProvider.get(payload.cep);
 
         if (!infoAddress) {
-            throw new CustomError("CEP is invalid", 422, 'REQUIRED_PARAMS')
+            throw new CustomError("CEP is invalid", 422)
         }
 
         user.address = infoAddress.logradouro;
