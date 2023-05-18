@@ -11,6 +11,6 @@ export type getCepDto = {
     siafi: string
 }
 
-export type getCepErrorDto = {
-    erro: boolean
+export type clientType = {
+    get(url: string): Promise<any>
 }
