@@ -31,20 +31,35 @@ describe('Create User UseCase Tests', () => {
         }
 
         const userId = randomUUID();
+        // const fakeRepository: IUserRepository = {
+        //     save(): Promise<UserEntity> {
+        //         return Promise.resolve({
+        //             id: userId,
+        //             name: "Teste da Silva",
+        //             surname: "tsilva",
+        //             phone: "(11)984512236",
+        //             address: "Teste de Logradouro",
+        //             cep: "01001-000",
+        //             origin: "user_node",
+        //             createdAt: "2023-05-17T20:22:34.254Z"
+        //         });
+        //     }
+        // }
+
         const fakeRepository: IUserRepository = {
-            save(): Promise<UserEntity> {
-                return Promise.resolve({
-                    id: userId,
-                    name: "Teste da Silva",
-                    surname: "tsilva",
-                    phone: "(11)984512236",
-                    address: "Teste de Logradouro",
-                    cep: "01001-000",
-                    origin: "user_node",
-                    createdAt: "2023-05-17T20:22:34.254Z"
-                });
+                save(): Promise<UserEntity> {
+                    return Promise.resolve({
+                        id: userId,
+                        name: "Teste da Silva",
+                        surname: "tsilva",
+                        phone: "(11)984512236",
+                        address: "Teste de Logradouro",
+                        cep: "01001-000",
+                        origin: "user_node",
+                        createdAt: "2023-05-17T20:22:34.254Z"
+                    });
+                }
             }
-        }
         const useCase = new CreateUserUseCase(fakeRepository, fakeRequest);
 
         const payload: CreateUserUseCaseDto = {
