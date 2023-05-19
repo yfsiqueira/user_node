@@ -1,9 +1,6 @@
 import axios from "axios";
 import { randomUUID } from "crypto";
 import { CreateUserUseCase } from "../create-user.usecase";
-import { UserPrismaRepository } from "../repositories/implementation/user.prisma.repository";
-import { CepViaCep } from "../../../../../providers/cep/implementation/cep.viacep";
-import { prismaClient } from "../../../../../infra/db/prisma.config";
 import { CreateUserUseCaseDto } from "../dto/create-user.dto";
 import { clientType } from "../../../../../providers/cep/dto/get-cep.dto";
 import { UserEntity } from "../../../entities/user.entity";
@@ -31,20 +28,6 @@ describe('Create User UseCase Tests', () => {
         }
 
         const userId = randomUUID();
-        // const fakeRepository: IUserRepository = {
-        //     save(): Promise<UserEntity> {
-        //         return Promise.resolve({
-        //             id: userId,
-        //             name: "Teste da Silva",
-        //             surname: "tsilva",
-        //             phone: "(11)984512236",
-        //             address: "Teste de Logradouro",
-        //             cep: "01001-000",
-        //             origin: "user_node",
-        //             createdAt: "2023-05-17T20:22:34.254Z"
-        //         });
-        //     }
-        // }
 
         const fakeRepository: IUserRepository = {
                 save(): Promise<UserEntity> {

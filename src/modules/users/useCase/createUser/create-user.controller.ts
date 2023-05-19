@@ -8,7 +8,7 @@ export class CreateUserController {
     constructor(private userRepository: IUserRepository, private cepProvider: ICepAbstraction) { }
 
     async handle(request: Request, response: Response): Promise<void> {
-        try { // TODO : Create a unit test for controller
+        try {
             const useCase = new CreateUserUseCase(
                 this.userRepository,
                 this.cepProvider

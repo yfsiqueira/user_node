@@ -69,7 +69,7 @@ describe('Integration Test user', () => {
         });
     });
 
-    test('Should be able to create a user', async () => {
+    test('Unavailable Database Service', async () => {
         mockRepository.mockRejectedValue({});
 
         const scope = nock('https://viacep.com.br')

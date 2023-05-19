@@ -50,7 +50,7 @@ describe('Entity User Tests', () => {
 
     });
 
-    test('Should not be able to create a User without a cep param', () => {
+    test('Should not be able to create a User with incorrect format cep', () => {
         expect(() => {
             UserEntity.create({
                 cep: '0111111',
